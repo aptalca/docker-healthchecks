@@ -5,8 +5,6 @@ cd /config
 if [ ! -d "/config/hc" ]; then
     git clone https://github.com/healthchecks/healthchecks.git /config
 
-    cp hc/local_settings.py.example hc/local_settings.py
-
     # set default values for variables
     SITE_ROOT=${SITE_ROOT:-https://my-monitoring-project.com}
     SITE_NAME=${SITE_NAME:-My Monitoring Project}
@@ -17,19 +15,20 @@ if [ ! -d "/config/hc" ]; then
     EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-password}
     EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
 
-    # configure healthchecks
-    sed -i \
-        -e "s#\#.*SITE_ROOT =.*#SITE_ROOT = \"${SITE_ROOT}\"#i" \
-        -e "s#\#.*SITE_NAME = .*#SITE_NAME = \"${SITE_NAME}\"#i" \
-        -e "s#\#.*DEFAULT_FROM_EMAIL = .*#DEFAULT_FROM_EMAIL = \"${DEFAULT_FROM_EMAIL}\"#i" \
-        -e "s#\#.*EMAIL_HOST = .*#EMAIL_HOST = \"${EMAIL_HOST}\"#i" \
-        -e "s#\#.*EMAIL_PORT = .*#EMAIL_PORT = \"${EMAIL_PORT}\"#i" \
-        -e "s#\#.*EMAIL_HOST_USER = .*#EMAIL_HOST_USER = \"${EMAIL_HOST_USER}\"#i" \
-        -e "s#\#.*EMAIL_HOST_PASSWORD = .*#EMAIL_HOST_PASSWORD = \"${EMAIL_HOST_PASSWORD}\"#i" \
-        -e "s#\#.*EMAIL_USE_TLS = .*#EMAIL_USE_TLS = \"${EMAIL_USE_TLS}\"#i" \
-            /config/hc/local_settings.py
+    cat <<EOF > ./hc/local_settings.py
+SITE_ROOT = $SITE_ROOT
+SITE_NAME = $SITE_NAME
+DEFAULT_FROM_EMAIL = $DEFAULT_FROM_EMAIL
 
-    echo "\nALLOWED_HOSTS = [\"${SITE_ROOT}\"]" >> /config/hc/local_settings.py
+EMAIL_HOST = $EMAIL_HOST
+EMAIL_PORT = $EMAIL_PORT
+EMAIL_HOST_USER = $EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = $EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS = $EMAIL_USE_TLS
+
+ALLOWED_HOSTS = ["$SITE_ROOT"]
+EOF
+
 fi
 
 pip install -r requirements.txt
