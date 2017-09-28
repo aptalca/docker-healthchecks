@@ -35,6 +35,15 @@ docker create \
   --name=healthchecks \
   -v <path to data>:/config \
   -e PGID=<gid> -e PUID=<uid>  \
+  -e SITE_ROOT=<SITE_ROOT> \
+  -e SITE_NAME=<SITE_NAME> \
+  -e DEFAULT_FROM_EMAIL=<DEFAULT_FROM_EMAIL> \
+  -e EMAIL_HOST=<EMAIL_HOST> \
+  -e EMAIL_PORT=<EMAIL_PORT> \
+  -e EMAIL_HOST_USER=<EMAIL_HOST_USER> \
+  -e EMAIL_HOST_PASSWORD=<EMAIL_HOST_PASSWORD> \
+  -e EMAIL_USE_TLS=<EMAIL_USE_TLS> \
+  -e ALLOWED_HOSTS=<ALLOWED_HOSTS> \
   -p 8000:8000 \
   alexphillips/healthchecks
 ```
@@ -56,6 +65,14 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 | `-v /config` | database and healthchecks config |
 | `-e PGID` | for GroupID, see below for explanation |
 | `-e PUID` | for UserID, see below for explanation |
+| `-e SITE_ROOT | The site's domain (i.e., example.com) |
+| `-e SITE_NAME | The site's name |
+| `-e DEFAULT_FROM_EMAIL | From email for alerts |
+| `-e EMAIL_HOST | SMTP host |
+| `-e EMAIL_PORT | SMTP port |
+| `-e EMAIL_HOST_USER | SMTP user |
+| `-e EMAIL_HOST_PASSWORD | SMTP password |
+| `-e EMAIL_USE_TLS | Use TLS? |
 
 &nbsp;
 
