@@ -14,7 +14,7 @@
 | Type | Address/Details |
 | :---: | --- |
 | Forum | [Linuserver.io forum][forumurl] |
-| IRC | freenode at `#linuxserver.io` more information at:- [IRC][ircurl]
+| IRC | freenode at `#linuxserver.io` more information at [IRC][ircurl] |
 | Podcast | Covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation! [Linuxserver.io Podcast][podcasturl] |
 
 
@@ -63,14 +63,14 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 | `-v /config` | database and healthchecks config |
 | `-e PGID` | for GroupID, see below for explanation |
 | `-e PUID` | for UserID, see below for explanation |
-| `-e SITE_ROOT | The site's domain (i.e., example.com) |
-| `-e SITE_NAME | The site's name |
-| `-e DEFAULT_FROM_EMAIL | From email for alerts |
-| `-e EMAIL_HOST | SMTP host |
-| `-e EMAIL_PORT | SMTP port |
-| `-e EMAIL_HOST_USER | SMTP user |
-| `-e EMAIL_HOST_PASSWORD | SMTP password |
-| `-e EMAIL_USE_TLS | Use TLS? |
+| `-e SITE_ROOT` | The site's domain (i.e., example.com) |
+| `-e SITE_NAME` | The site's name |
+| `-e DEFAULT_FROM_EMAIL` | From email for alerts |
+| `-e EMAIL_HOST` | SMTP host |
+| `-e EMAIL_PORT` | SMTP port |
+| `-e EMAIL_HOST_USER` | SMTP user |
+| `-e EMAIL_HOST_PASSWORD` | SMTP password |
+| `-e EMAIL_USE_TLS` | Use TLS? |
 
 &nbsp;
 
