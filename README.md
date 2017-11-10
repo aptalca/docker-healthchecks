@@ -42,6 +42,8 @@ docker create \
   -e EMAIL_HOST_PASSWORD=<EMAIL_HOST_PASSWORD> \
   -e EMAIL_USE_TLS=<EMAIL_USE_TLS> \
   -e ALLOWED_HOSTS=<ALLOWED_HOSTS> \
+  -e TELEGRAM_BOT=<TELEGRAM_BOT> \
+  -e TELEGRAM_TOKEN=<TELEGRAM_TOKEN> \
   -p 8000:8000 \
   alexphillips/healthchecks
 ```
@@ -71,6 +73,8 @@ http://192.168.x.x:8080 would show you what's running INSIDE the container on po
 | `-e EMAIL_HOST_USER` | SMTP user |
 | `-e EMAIL_HOST_PASSWORD` | SMTP password |
 | `-e EMAIL_USE_TLS` | Use TLS? |
+| `-e TELEGRAM_BOT` | Name of Telegram bot |
+| `-e TELEGRAM_TOKEN` | Telegram Bot Token |
 
 &nbsp;
 
