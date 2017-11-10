@@ -29,6 +29,9 @@ EMAIL_USE_TLS = $EMAIL_USE_TLS
 ALLOWED_HOSTS = ["$SITE_ROOT"]
 EOF
 
+else
+    git checkout master
+    git pull
 fi
 
 pip install -r requirements.txt
