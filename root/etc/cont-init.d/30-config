@@ -2,9 +2,10 @@
 
 cd /config
 
-if [ ! -d "/config/hc" ]; then
-    git clone https://github.com/healthchecks/healthchecks.git /config
+rsync -azvP --checksum --ignore-existing \
+    /app/ /config
 
+if [ ! -f "/config/hc/local_settings.py" ]; then
     # set default values for variables
     SITE_ROOT=${SITE_ROOT:-https://my-monitoring-project.com}
     SITE_NAME=${SITE_NAME:-My Monitoring Project}
@@ -14,10 +15,8 @@ if [ ! -d "/config/hc" ]; then
     EMAIL_HOST_USER=${EMAIL_HOST_USER:-username}
     EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-password}
     EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
-    TELEGRAM_BOT=${TELEGRAM_BOT:-mybot}
-    TELEGRAM_TOKEN=${TELEGRAM_BOT:-mytoken}
 
-    cat <<EOF > ./hc/local_settings.py
+    cat <<EOF > /config/hc/local_settings.py
 SITE_ROOT = "$SITE_ROOT"
 SITE_NAME = "$SITE_NAME"
 DEFAULT_FROM_EMAIL = "$DEFAULT_FROM_EMAIL"
@@ -28,15 +27,9 @@ EMAIL_HOST_USER = "$EMAIL_HOST_USER"
 EMAIL_HOST_PASSWORD = "$EMAIL_HOST_PASSWORD"
 EMAIL_USE_TLS = $EMAIL_USE_TLS
 
-TELEGRAM_BOT = "$TELEGRAM_BOT"
-TELEGRAM_TOKEN = "$TELEGRAM_TOKEN"
-
 ALLOWED_HOSTS = ["$SITE_ROOT"]
 EOF
 
-else
-    git checkout master
-    git pull
 fi
 
 pip install -r requirements.txt

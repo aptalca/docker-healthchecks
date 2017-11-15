@@ -15,6 +15,8 @@ RUN \
     gcc \
     musl-dev
 
+RUN git clone https://github.com/healthchecks/healthchecks.git /app
+
 # copy local files
 COPY root/ /
 
