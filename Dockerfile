@@ -8,14 +8,14 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 
 # install packages
 RUN \
-    apk add --no-cache \
-    python2-dev \
+ apk add --no-cache \
+    gcc \
+    musl-dev \
     mysql \
     postgresql-dev \
-    gcc \
-    musl-dev
+    python2-dev && \
 
-RUN git clone https://github.com/healthchecks/healthchecks.git /app
+ git clone https://github.com/healthchecks/healthchecks.git /app
 
 # copy local files
 COPY root/ /
